@@ -29,12 +29,15 @@ public:
     int getCurrentSize() const;
     bool isEmpty() const;
 
+    // add: add a Node in front if the data is not already in the list.
+    // If it is already in the list, then ignore
+    // should also update the traverse count
     bool add(int newEntry);
     bool remove(int anEntry);
     void clear();
 
     virtual bool contains(int anEntry);
-    int getTraverseCount() const;
+    int getTraverseCount() const; // holds  count of # of nodes traversed during list usage
     int retrieve(int index);
     void resetTraverseCount();
 
