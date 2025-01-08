@@ -3,7 +3,7 @@
 #define PROGRAM1_TRANSPOSELIST_H
 
 // implements the swap strategy
-//Every time an element is accessed, it is swapped with the previous node of the list
+// Every time an element is accessed, it is swapped with the previous node of the list
 
 class TransposeList : public CDLinkedList {
 public:
