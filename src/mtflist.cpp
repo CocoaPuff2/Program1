@@ -19,7 +19,7 @@
  * current->prev = header; dummy <--> 3
  *
  */
-bool MtFList::contains(int anEntry) {
+bool MtfList::contains(int anEntry) {
     DlistNode* current = header->next;
     while (current != header) {
         if (current->item == anEntry) { // move element to front

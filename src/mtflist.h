@@ -7,7 +7,7 @@
 // implements the move-to-front strategy
 // the most currently accessed node is moved to the front
 
-class MtFList : public CDLinkedList {
+class MtfList : public CDLinkedList {
 public:
     // override contains() method so that if it contains the entry,
     // move the target node to front.
