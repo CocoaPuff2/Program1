@@ -23,7 +23,7 @@ class CDLinkedList {
     // used the P1 assignment description on canvas as a guide
 public:
     CDLinkedList();
-    CDLinkedList(const CDLinkedList &rhs)
+    CDLinkedList(const CDLinkedList &rhs);
     ~CDLinkedList(); // the destructor
 
     int getCurrentSize() const;

@@ -1,4 +1,5 @@
 #include "CDLinkedList.h"
+#include <stdexcept>
 
 CDLinkedList::CDLinkedList() {
     // creating a new dummy header node with val 0
