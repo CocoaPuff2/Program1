@@ -1,4 +1,5 @@
 #include "mtflist.h"
+#include "CDLinkedList.h"
 
 /*
  * ex:
@@ -20,7 +21,7 @@
  *
  */
 bool MtfList::contains(int anEntry) {
-    DlistNode* current = header->next;
+    DListNode* current = header->next;
     while (current != header) {
         if (current->item == anEntry) { // move element to front
             // if it's not already the first node

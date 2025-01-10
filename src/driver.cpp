@@ -2,7 +2,7 @@
 #include "mtflist.h"
 #include "transposelist.h"
 #include <iostream>
-#include <gtest/gtest.h> //  for automated testing
+// #include <gtest/gtest.h> //  for automated testing
 
 
 int main() {

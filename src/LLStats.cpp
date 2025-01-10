@@ -19,7 +19,7 @@ int main() {
     // Alter the following declaration to change the linked list class name.
     CDLinkedList theList;
     //TransposeList theList;
-   // MtfList theList;
+    // MtfList theList;
 
     const int numValues = 1000;
     const int numAccesses = 100000;
