@@ -3,7 +3,7 @@
 CDLinkedList::CDLinkedList() {
     // creating a new dummy header node with val 0
     // next and prev point to nullptr
-    header = new DlistNode(0, nullptr, nullptr);
+    header = new DListNode(0, nullptr, nullptr);
 
     // dummy head node's next and prev should point to itself (CDLL)
     head->next = header;
@@ -15,7 +15,7 @@ CDLinkedList::CDLinkedList() {
 
 
     // Copy nodes from rhs list
-    DlistNode* current = rhs.header->next;
+    DListNode* current = rhs.header->next;
     while (current != rhs.header) { // while not circled back around
         add(current->item);
         current = current->next;
@@ -43,7 +43,7 @@ bool CDLinkedList::add(int newEntry) {
 
 // remove entry
 bool CDLinkedList::remove(int anEntry) {
-    DlistNode* current = header->next;
+    DListNode* current = header->next;
     while (current != header) {
         if (current->item == anEntry) {
             current->prev->next = current->next; // skip current
@@ -60,10 +60,10 @@ bool CDLinkedList::remove(int anEntry) {
 
 // clear list
 void CDLinkedList::clear() {
-    DlistNode* current = header->next;
+    DListNode* current = header->next;
 
     while (current != header) {
-        DlistNode* temp = current;
+        DListNode* temp = current;
         current = current->next;
         delete temp;
     }
@@ -75,7 +75,7 @@ void CDLinkedList::clear() {
 
 // contains
 bool CDLinkedList::contains(int anEntry) {
-    DlistNode* current = header->next;
+    DListNode* current = header->next;
 
     while (current != header) {
         if (current->item == anEntry) {
@@ -97,7 +97,7 @@ int CDLinkedList::retrieve(int index) {
         throw std::out_of_range("Oops, the index out of range");
     }
 
-    DlistNode* current = header->next;
+    DListNode* current = header->next;
     for (int i = 0; i < index; i++) {
         current = current->next;
     }

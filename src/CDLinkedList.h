@@ -13,7 +13,7 @@
  * previous node is the list's last node.
  */
 
-struct DlistNode {
+struct DListNode {
     int item;  // Node class/struct that holds an int
     DListNode* prev; // two pointers point to previous
     DListNode* next;  // and next nod
