@@ -3,16 +3,25 @@
 CDLinkedList::CDLinkedList() {
     // creating a new dummy header node with val 0
     // next and prev point to nullptr
-    header = new DListNode(0, nullptr, nullptr);
+    header = new DListNode{0, nullptr, nullptr};
 
     // dummy head node's next and prev should point to itself (CDLL)
-    head->next = header;
+    header->next = header;
     header->prev = header;
 
     // counter keeps track of how many nodes have been traversed during
     // operations (add, remove, contains)
     traverseCount = 0;
+}
 
+// Copy constructor
+CDLinkedList::CDLinkedList(const CDLinkedList &rhs) {
+    // Creating a new dummy header node with val 0
+    header = new DListNode{0, nullptr, nullptr};
+
+    // Dummy header's next and prev point to itself initially
+    header->next = header;
+    header->prev = header;
 
     // Copy nodes from rhs list
     DListNode* current = rhs.header->next;
@@ -21,35 +30,44 @@ CDLinkedList::CDLinkedList() {
         current = current->next;
     }
 
+    // Counter for traversal (this will be same as rhs traversal count)
+    traverseCount = rhs.traverseCount;
 }
 
 // Destructor (I don't want memory leaks!!)
 CDLinkedList::~CDLinkedList() {
     clear(); // for the nodes
-    delete header; // delete dummy
+    delete header; // delete dummy node
 }
 
-// add new entry
+// Add new entry
 bool CDLinkedList::add(int newEntry) {
-    DlistNode* newNode = new DlistNode;
+    // Check if entry already exists
+    if (contains(newEntry)) {
+        return false;
+    }
 
-    // inserting after dummy node
+    // Create a new node
+    DListNode* newNode = new DListNode{newEntry, header, header->next};
+
+    // Insert after dummy node
     header->next->prev = newNode;
     header->next = newNode;
 
+    // Increment the traversal count
     traverseCount++;
     return true;
 }
 
-// remove entry
+// Remove entry
 bool CDLinkedList::remove(int anEntry) {
     DListNode* current = header->next;
     while (current != header) {
         if (current->item == anEntry) {
-            current->prev->next = current->next; // skip current
-            current->next->prev = current->prev; // fix prev connection
+            current->prev->next = current->next; // Skip current
+            current->next->prev = current->prev; // Fix prev connection
 
-            delete current; // no mem leaks today!
+            delete current; // Avoid memory leaks
             traverseCount--;
             return true;
         }
@@ -58,7 +76,7 @@ bool CDLinkedList::remove(int anEntry) {
     return false;
 }
 
-// clear list
+// Clear list
 void CDLinkedList::clear() {
     DListNode* current = header->next;
 
@@ -73,7 +91,7 @@ void CDLinkedList::clear() {
     traverseCount = 0;
 }
 
-// contains
+// Contains
 bool CDLinkedList::contains(int anEntry) {
     DListNode* current = header->next;
 
@@ -86,15 +104,15 @@ bool CDLinkedList::contains(int anEntry) {
     return false;
 }
 
-// get traversal count
+// Get traversal count
 int CDLinkedList::getTraverseCount() const {
     return traverseCount;
 }
 
-// retrive entry based on an index
+// Retrieve entry based on an index
 int CDLinkedList::retrieve(int index) {
-    if (index < 0 || index > getCurrentSize()) {
-        throw std::out_of_range("Oops, the index out of range");
+    if (index < 0 || index >= getCurrentSize()) {  // index should be less than getCurrentSize
+        throw std::out_of_range("Oops, the index is out of range");
     }
 
     DListNode* current = header->next;
@@ -104,8 +122,7 @@ int CDLinkedList::retrieve(int index) {
     return current->item;
 }
 
-// reset traverse count
+// Reset traverse count
 void CDLinkedList::resetTraverseCount() {
     traverseCount = 0;
 }
-
