@@ -44,6 +44,7 @@ public:
 
 protected:
     DListNode *header;  // dummy head node
+    int traverseCount;
 
 };
 
